@@ -17,7 +17,6 @@ load_dotenv()
 
 # Database setup (Async SQLAlchemy)
 DATABASE_URL = os.getenv("DATABASE_URI")
-logger.debug("That's it, beautiful and simple logging!", DATABASE_URL)
 
 engine = create_async_engine(DATABASE_URL, echo=True)
 async_session = sessionmaker(engine, class_=AsyncSession, expire_on_commit=False)
@@ -39,7 +38,7 @@ app = FastAPI(lifespan=lifespan)
 
 @app.get("/healthz")
 async def healthz():
-    return {"status": "ok", "database": DATABASE_URL}
+    return {"status": "ok"}
 
 
 # CRUD router setup
