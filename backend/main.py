@@ -1,3 +1,4 @@
+import os
 from typing import AsyncGenerator
 
 from fastapi import FastAPI
@@ -8,8 +9,12 @@ from sqlalchemy.orm import sessionmaker
 from models.guide import Base, Guide
 from schemas.guide import GuideCreateSchema, GuideSearchSchema, GuideUpdateSchema
 
+from dotenv import load_dotenv
+load_dotenv()
+
 # Database setup (Async SQLAlchemy)
-DATABASE_URL = "sqlite+aiosqlite:///./entouro.db"
+DATABASE_URL = os.getenv("DATABASE_URI")
+
 engine = create_async_engine(DATABASE_URL, echo=True)
 async_session = sessionmaker(engine, class_=AsyncSession, expire_on_commit=False)
 
