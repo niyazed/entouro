@@ -49,4 +49,4 @@ COPY . .
 EXPOSE 8000
 
 # Run the application.
-CMD fastapi run src/app.py
+CMD fastapi run main.py
