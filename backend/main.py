@@ -16,7 +16,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # Database setup (Async SQLAlchemy)
-DATABASE_URL = os.getenv("DATABASE_URI")
+DATABASE_URL = os.getenv("ENTOURO_DATABASE_DATABASE_URL")
 
 engine = create_async_engine(DATABASE_URL, echo=True)
 async_session = sessionmaker(engine, class_=AsyncSession, expire_on_commit=False)
