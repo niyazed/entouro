@@ -1,4 +1,6 @@
 import os
+from loguru import logger
+
 from typing import AsyncGenerator
 
 from fastapi import FastAPI
@@ -9,12 +11,13 @@ from sqlalchemy.orm import sessionmaker
 from models.guide import Base, Guide
 from schemas.guide import GuideCreateSchema, GuideSearchSchema, GuideUpdateSchema
 
+
 from dotenv import load_dotenv
 load_dotenv()
 
 # Database setup (Async SQLAlchemy)
-DATABASE_URL = os.getenv("DATABASE_URI")
-print(DATABASE_URL)
+DATABASE_URL = os.getenv("ENTOURO_DATABASE_DATABASE_URL")
+logger.debug("That's it, beautiful and simple logging!", DATABASE_URL)
 
 engine = create_async_engine(DATABASE_URL, echo=True)
 async_session = sessionmaker(engine, class_=AsyncSession, expire_on_commit=False)
