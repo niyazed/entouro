@@ -37,6 +37,11 @@ async def lifespan(app: FastAPI):
 # FastAPI app
 app = FastAPI(lifespan=lifespan)
 
+@app.get("/healthz")
+async def healthz():
+    return {"status": "ok", "database": DATABASE_URL}
+
+
 # CRUD router setup
 guide_router = crud_router(
     session=get_session,
