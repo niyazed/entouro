@@ -1,0 +1,14 @@
+backend:
+    functions:
+        - entry: main.py
+          handler: app
+          name: fastapi
+          path: .
+          type: httpServer
+    language:
+        name: python
+        packageManager: pip
+    path: backend
+name: entouro-backend
+region: us-east-1
+yamlVersion: 2
