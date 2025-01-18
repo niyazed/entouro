@@ -16,7 +16,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # Database setup (Async SQLAlchemy)
-DATABASE_URL = os.getenv("ENTOURO_DATABASE_DATABASE_URL")
+DATABASE_URL = os.getenv("DATABASE_URI")
 logger.debug("That's it, beautiful and simple logging!", DATABASE_URL)
 
 engine = create_async_engine(DATABASE_URL, echo=True)
