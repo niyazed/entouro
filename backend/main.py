@@ -14,6 +14,7 @@ load_dotenv()
 
 # Database setup (Async SQLAlchemy)
 DATABASE_URL = os.getenv("DATABASE_URI")
+print(DATABASE_URL)
 
 engine = create_async_engine(DATABASE_URL, echo=True)
 async_session = sessionmaker(engine, class_=AsyncSession, expire_on_commit=False)
@@ -21,6 +22,7 @@ async_session = sessionmaker(engine, class_=AsyncSession, expire_on_commit=False
 # Database session dependency
 async def get_session() -> AsyncGenerator[AsyncSession, None]:
     async with async_session() as session:
+        print("Connection Established, yielding session")
         yield session
 
 # Create tables before the app start
